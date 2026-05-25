@@ -1,0 +1,10 @@
+# outputs (generated reports, not part of the skill)
+*.html
+*.xlsx
+*.jpg
+*.png
+
+# temp
+*.tmp
+Thumbs.db
+.DS_Store
