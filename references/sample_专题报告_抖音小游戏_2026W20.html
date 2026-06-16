@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>专题报告｜抖音小游戏 · W20 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue:#1d4ed8;--blue-l:#eff6ff;--blue-m:#bfdbfe;
+  --ink:#0f172a;--ink-2:#334155;--ink-3:#64748b;--ink-4:#94a3b8;
+  --line:#e2e8f0;--line-l:#f1f5f9;--bg:#f8fafc;--white:#ffffff;
+  --green:#16a34a;--green-l:#f0fdf4;
+  --amber:#d97706;--amber-l:#fffbeb;
+  --red:#dc2626;--red-l:#fef2f2;
+  --teal:#0d9488;--teal-l:#f0fdfa;
+  --nav-w:224px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;}
+.nav{width:var(--nav-w);flex-shrink:0;background:var(--white);border-right:1px solid var(--line);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:100;display:flex;flex-direction:column;}
+.nav-brand{padding:22px 20px 16px;border-bottom:1px solid var(--line-l);}
+.nav-brand-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-4);margin-bottom:6px;}
+.nav-brand-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;}
+.nav-brand-meta{font-size:11px;color:var(--ink-4);margin-top:4px;}
+.nav-items{padding:12px 0;flex:1;}
+.nav-section-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-4);padding:10px 20px 4px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 20px;text-decoration:none;color:var(--ink-3);font-size:13px;font-weight:500;border-left:2px solid transparent;transition:background .12s;}
+.nav-item:hover{background:var(--line-l);color:var(--ink);}
+.nav-item.active{background:var(--blue-l);color:var(--blue);border-left-color:var(--blue);font-weight:600;}
+.nav-item-num{font-size:10px;font-weight:700;color:var(--ink-4);width:18px;flex-shrink:0;}
+.nav-item.active .nav-item-num{color:var(--blue);}
+.nav-badge{margin-left:auto;font-size:9px;font-weight:700;padding:1px 6px;border-radius:99px;background:var(--red-l);color:var(--red);}
+.main{margin-left:var(--nav-w);flex:1;min-height:100vh;}
+.section{padding:48px 52px 64px;border-bottom:1px solid var(--line);max-width:1020px;}
+.section-eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+.section-title{font-size:26px;font-weight:800;color:var(--ink);line-height:1.25;letter-spacing:-0.4px;margin-bottom:10px;}
+.section-sub{font-size:14px;color:var(--ink-3);line-height:1.7;max-width:640px;}
+.header-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.htag{font-size:11px;font-weight:600;padding:4px 11px;border-radius:99px;border:1px solid;}
+.htag-threat{background:var(--red-l);color:var(--red);border-color:#fca5a5;}
+.htag-learn{background:var(--blue-l);color:var(--blue);border-color:var(--blue-m);}
+.htag-week{background:var(--line-l);color:var(--ink-3);border-color:var(--line);}
+.card{background:var(--white);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.card-head{padding:12px 20px;border-bottom:1px solid var(--line-l);background:var(--bg);display:flex;align-items:center;justify-content:space-between;}
+.card-head-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);}
+.card-body{padding:20px;}
+.verdict-items{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.verdict-item{display:flex;gap:14px;padding:14px 16px;border-radius:8px;background:var(--bg);border:1px solid var(--line);}
+.verdict-item.hyp{background:var(--amber-l);border-color:#fde68a;}
+.verdict-status{font-size:10px;font-weight:700;letter-spacing:1px;flex-shrink:0;padding-top:2px;white-space:nowrap;}
+.verdict-status.ok{color:var(--green);}
+.verdict-status.hyp{color:var(--amber);}
+.verdict-text{font-size:14px;color:var(--ink-2);line-height:1.65;}
+.verdict-text strong{color:var(--ink);}
+.badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;letter-spacing:0.3px;vertical-align:middle;margin:0 2px;}
+.badge-blue{background:var(--blue-l);color:var(--blue);border:1px solid var(--blue-m);}
+.badge-green{background:var(--green-l);color:var(--green);border:1px solid #bbf7d0;}
+.badge-amber{background:var(--amber-l);color:var(--amber);border:1px solid #fde68a;}
+.badge-red{background:var(--red-l);color:var(--red);border:1px solid #fca5a5;}
+.badge-gray{background:var(--line-l);color:var(--ink-3);border:1px solid var(--line);}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.metric-tile{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:18px 20px;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.metric-label{font-size:11px;font-weight:600;color:var(--ink-3);margin-bottom:6px;}
+.metric-val{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-0.5px;}
+.metric-val.blue{color:var(--blue);}
+.metric-val.red{color:var(--red);}
+.metric-sub{font-size:11px;color:var(--ink-4);margin-top:4px;}
+.data-table{width:100%;border-collapse:collapse;font-size:13.5px;margin:4px 0;}
+.data-table th{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);text-align:left;padding:9px 16px;border-bottom:1px solid var(--line);background:var(--bg);}
+.data-table td{padding:11px 16px;border-bottom:1px solid var(--line-l);color:var(--ink-2);vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:hover td{background:var(--line-l);}
+.data-table .val{font-weight:700;color:var(--ink);}
+.flow-row{display:flex;align-items:stretch;background:var(--white);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.flow-step{flex:1;padding:14px 18px;border-right:1px solid var(--line);}
+.flow-step:last-child{border-right:none;}
+.flow-step-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-4);margin-bottom:4px;}
+.flow-step-val{font-size:14px;font-weight:700;color:var(--ink);}
+.flow-step-sub{font-size:12px;color:var(--ink-3);margin-top:2px;line-height:1.5;}
+.flow-arrow{padding:0 4px;display:flex;align-items:center;color:var(--ink-4);font-size:16px;flex-shrink:0;}
+.flow-row.danger .flow-step-val{color:var(--red);}
+.flow-row.good .flow-step-val{color:var(--green);}
+.signal-list{display:flex;flex-direction:column;gap:10px;margin:16px 0;}
+.signal-item{display:flex;gap:14px;align-items:flex-start;padding:14px 18px;background:var(--white);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:0 8px 8px 0;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.signal-num{font-size:11px;font-weight:800;color:var(--red);flex-shrink:0;padding-top:1px;}
+.signal-text{font-size:14px;color:var(--ink-2);line-height:1.65;}
+.signal-text strong{color:var(--ink);}
+.info-row{display:flex;gap:14px;align-items:flex-start;padding:12px 16px;background:var(--bg);border:1px solid var(--line);border-radius:8px;margin-bottom:8px;font-size:13.5px;color:var(--ink-2);line-height:1.6;}
+.info-row strong{color:var(--ink);}
+.info-row-icon{flex-shrink:0;font-size:15px;}
+.def-box{background:var(--blue-l);border:1px solid var(--blue-m);border-radius:8px;padding:16px 20px;margin:16px 0;}
+.def-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.def-text{font-size:13.5px;color:var(--ink-2);line-height:1.7;}
+.def-text strong{color:var(--ink);}
+.fix-box{background:var(--red-l);border:1px solid #fca5a5;border-radius:8px;padding:16px 20px;margin:16px 0;}
+.fix-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.fix-text{font-size:13.5px;color:var(--ink-2);line-height:1.7;}
+.fix-text strong{color:var(--ink);}
+.fix-text p{margin-bottom:10px;}
+.fix-text p:last-child{margin-bottom:0;}
+.eval-list{display:flex;flex-direction:column;gap:8px;margin:16px 0;}
+.eval-row{display:flex;align-items:center;gap:16px;padding:12px 18px;background:var(--white);border:1px solid var(--line);border-radius:8px;}
+.eval-dim{font-size:13px;font-weight:600;color:var(--ink-2);width:130px;flex-shrink:0;}
+.eval-stars{display:flex;gap:2px;flex-shrink:0;}
+.star{font-size:14px;}
+.star.on{color:#f59e0b;}
+.star.off{color:var(--line);}
+.eval-note{font-size:12.5px;color:var(--ink-3);flex:1;}
+.mech-card{background:var(--white);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.mech-head{padding:12px 20px;background:var(--bg);border-bottom:1px solid var(--line-l);display:flex;align-items:center;gap:12px;}
+.mech-num{font-size:10px;font-weight:700;color:var(--ink-4);}
+.mech-title{font-size:14px;font-weight:700;color:var(--ink);flex:1;}
+.mech-body{padding:20px;font-size:14px;color:var(--ink-2);line-height:1.7;}
+.mech-body strong{color:var(--ink);}
+.mech-body p{margin-bottom:12px;}
+.mech-body p:last-child{margin-bottom:0;}
+.mech-prereq{margin-top:14px;padding:12px 16px;background:var(--amber-l);border:1px solid #fde68a;border-radius:8px;font-size:13px;color:var(--ink-2);}
+.prereq-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-bottom:5px;}
+.dna-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0;}
+.dna-card{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px 16px;}
+.dna-q{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.dna-hint{font-size:12px;color:var(--ink-3);line-height:1.55;}
+.action-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.action-table th{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);text-align:left;padding:9px 16px;border-bottom:1px solid var(--line);background:var(--bg);}
+.action-table td{padding:12px 16px;border-bottom:1px solid var(--line-l);color:var(--ink-2);vertical-align:top;}
+.action-table tr:last-child td{border-bottom:none;}
+.action-table tr:hover td{background:var(--line-l);}
+.action-table td strong{color:var(--ink);}
+.priority{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;}
+.p0{background:var(--red-l);color:var(--red);border:1px solid #fca5a5;}
+.p1{background:var(--amber-l);color:var(--amber);border:1px solid #fde68a;}
+.p2{background:var(--line-l);color:var(--ink-3);border:1px solid var(--line);}
+.blind-list{display:flex;flex-direction:column;gap:8px;margin:16px 0;}
+.blind-item{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:var(--white);border:1px solid var(--line);border-radius:8px;font-size:13.5px;color:var(--ink-2);}
+.blind-item.key{background:var(--amber-l);border-color:#fde68a;font-weight:500;color:var(--ink);}
+.blind-icon{flex-shrink:0;}
+.source-legend{display:flex;flex-wrap:wrap;gap:10px;padding:16px 20px;background:var(--bg);border:1px solid var(--line);border-radius:8px;margin-top:16px;}
+.legend-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-3);}
+.div{height:1px;background:var(--line-l);margin:28px 0;}
+p{font-size:14px;color:var(--ink-2);line-height:1.7;margin-bottom:14px;}
+p:last-child{margin-bottom:0;}
+p strong{color:var(--ink);}
+h3{font-size:15px;font-weight:700;color:var(--ink);margin:24px 0 12px;}
+.src{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.3px;padding:1px 7px;border-radius:99px;vertical-align:middle;margin:0 2px;border:1px solid;}
+.src-wp{background:var(--line-l);color:var(--ink-3);border-color:var(--line);}
+.src-off{background:var(--blue-l);color:var(--blue);border-color:var(--blue-m);}
+.src-qm{background:var(--teal-l);color:var(--teal);border-color:#99f6e4;}
+.src-inf{background:var(--amber-l);color:var(--amber);border-color:#fde68a;}
+.src-fix{background:var(--red-l);color:var(--red);border-color:#fca5a5;}
+.src-hyp{background:var(--green-l);color:var(--green);border-color:#bbf7d0;}
+a.src {
+  text-decoration: none;
+  cursor: pointer;
+}
+a.src:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+.source-legend a {
+  text-decoration: none;
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-brand-label">竞品专题报告</div>
+    <div class="nav-brand-title">抖音小游戏<br>深度分析</div>
+    <div class="nav-brand-meta">W20 · 2026.05.15</div>
+  </div>
+  <div class="nav-items">
+    <div class="nav-section-label">核心结论</div>
+    <a class="nav-item active" href="#s0"><span class="nav-item-num">↑</span>核心判断</a>
+    <div class="nav-section-label">产品拆解</div>
+    <a class="nav-item" href="#s1"><span class="nav-item-num">01</span>产品概览</a>
+    <a class="nav-item" href="#s2"><span class="nav-item-num">02</span>用户与场景</a>
+    <a class="nav-item" href="#s3"><span class="nav-item-num">03</span>产品能力</a>
+    <a class="nav-item" href="#s4"><span class="nav-item-num">04</span>商业结构</a>
+    <a class="nav-item" href="#s5"><span class="nav-item-num">05</span>综合评估</a>
+    <div class="nav-section-label">对我们的判断</div>
+    <a class="nav-item" href="#s6"><span class="nav-item-num">6A</span>威胁视角<span class="nav-badge">高</span></a>
+    <a class="nav-item" href="#s7"><span class="nav-item-num">6B</span>学习借鉴</a>
+    <div class="nav-section-label">行动</div>
+    <a class="nav-item" href="#s8"><span class="nav-item-num">→</span>行动排序</a>
+  </div>
+</nav>
+
+<main class="main">
+
+<section class="section" id="s0">
+  <div class="header-tags">
+    <span class="htag htag-week">W20 · 2026.05.15</span>
+    <span class="htag htag-threat">第一类 · 流量直接竞争</span>
+    <span class="htag htag-learn">第三类 · 学习参考</span>
+  </div>
+  <div class="section-eyebrow">核心判断 · 结论前置</div>
+  <div class="section-title">抖音小游戏已完成<br>从"买量工具"到"内容分发平台"的质变</div>
+  <div class="section-sub">威胁不是功能层面的竞争，而是用户游戏消费起点的争夺——用户在抖音内完成"发现→决策→启动→付费"全链路，我们的分发入口被绕过。</div>
+  <div class="verdict-items">
+    <div class="verdict-item">
+      <div class="verdict-status ok">✓ 已支撑</div>
+      <div class="verdict-text">抖音小游戏正在往中重度品类扩张（云游戏+手转小），<strong>我们的高价值用户群开始受压，不只是轻度用户。</strong>内购占比从38.8%升至68.1%印证付费深度已对标手游。</div>
+    </div>
+    <div class="verdict-item hyp">
+      <div class="verdict-status hyp">? 待验证</div>
+      <div class="verdict-text"><strong>让利政策形成供给侧虹吸</strong>——但"首发窗口收窄"是独立命题。小游戏与手游App是不同发行形态，厂商选择抖音不等于放弃给我们首发，两者存在同时分发的可能性。需BD侧验证实际谈判数据后确认。</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s1">
+  <div class="section-eyebrow">01 · 产品概览</div>
+  <div class="section-title">规模化成熟期<br>内购已超广告成主流</div>
+  <div class="grid-4" style="margin:24px 0 20px">
+    <div class="metric-tile"><div class="metric-label">全行业小游戏规模</div><div class="metric-val">535亿</div><div class="metric-sub">2025年，同比+34.4%</div></div>
+    <div class="metric-tile"><div class="metric-label">抖音市场份额</div><div class="metric-val blue">~30%</div><div class="metric-sub">较2023年+10pct</div></div>
+    <div class="metric-tile"><div class="metric-label">DAU/活跃用户增速</div><div class="metric-val red">+120%</div><div class="metric-sub">2025年同比</div></div>
+    <div class="metric-tile"><div class="metric-label">平台 MAU</div><div class="metric-val">1.71亿</div><div class="metric-sub">2025.08 QuestMobile</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><span class="card-head-title">关键数据</span><span class="badge badge-gray">白皮书·媒体引用</span></div>
+    <div class="card-body" style="padding:0">
+      <table class="data-table">
+        <thead><tr><th>指标</th><th>数据</th><th>来源</th></tr></thead>
+        <tbody>
+          <tr><td>内购收入占比</td><td class="val">68.1%（+29.3pct vs 2022年）</td><td><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07">白皮书·极光月狐 ↗</a></td></tr>
+          <tr><td>内容消费增速</td><td class="val">短视频/直播观看+8倍</td><td><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07">白皮书·极光月狐 ↗</a></td></tr>
+          <tr><td>核心用户年龄段</td><td class="val">18-40岁，占比超85%</td><td><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07">白皮书·极光月狐 ↗</a></td></tr>
+          <tr><td>头部产品《开运麻将》月活</td><td class="val">5,623万</td><td><a href="https://www.questmobile.com.cn/research/report/1980474117065904130/" target="_blank" class="src src-qm" title="QuestMobile 2025手机游戏行业发展分析报告 2025.10.21">QuestMobile 2025.08 ↗</a></td></tr>
+          <tr><td>抖音小游戏 vs App 重合度</td><td class="val">仅1%（大量新增用户）</td><td><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07">白皮书·极光月狐 ↗</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p><span class="src src-inf" title="基于公开信息的综合判断，非原文直接支撑">推断</span> 内购占比超过广告变现成为主流，说明用户付费深度和产品留存能力已达到可与手游正面竞争的水平。</p>
+</section>
+
+<section class="section" id="s2">
+  <div class="section-eyebrow">02 · 用户与场景</div>
+  <div class="section-title">更年轻、更城市<br>与手游用户重叠度最高</div>
+  <p style="margin-top:20px"><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07">白皮书·极光月狐 ↗</a> 用户画像年轻化，18-40岁核心用户占比超85%，偏好休闲益智、策略对抗、棋牌桌游。对比微信小游戏（40岁以上占42.1%，三四线城市为主），抖音用户<strong>更年轻、更城市化，与手游用户重叠度更高。</strong> <a href="https://www.questmobile.com.cn/research/report/1980474117065904130/" target="_blank" class="src src-qm" title="QuestMobile 2025手机游戏行业发展分析报告 2025.10.21">QuestMobile 2025.10 ↗</a></p>
+  <h3>典型使用路径：零摩擦启动</h3>
+  <div class="flow-row">
+    <div class="flow-step"><div class="flow-step-label">触达</div><div class="flow-step-val">刷到游戏视频/直播</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-label">进入</div><div class="flow-step-val">一键启动小游戏</div><div class="flow-step-sub">无需下载，即开即玩</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-label">社交</div><div class="flow-step-val">分享给好友</div><div class="flow-step-sub">带来新用户裂变</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-label">复访</div><div class="flow-step-val">侧边栏/小游戏中心</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-label">付费</div><div class="flow-step-val">内购转化</div></div>
+  </div>
+  <h3>社交留存数据</h3>
+  <div class="grid-2">
+    <div class="metric-tile"><div class="metric-label">好友互动带来次日留存提升</div><div class="metric-val blue">+20%</div><div class="metric-sub"><a href="https://finance.sina.com.cn/roll/2025-12-20/doc-inhcmwzc4576332.shtml" target="_blank" class="src src-off" title="2025抖音小游戏生态大会报道·新浪财经 2025.12.20">官方发言·新浪财经 ↗</a></div></div>
+    <div class="metric-tile"><div class="metric-label">社交互动场景转化率</div><div class="metric-val blue">55%</div><div class="metric-sub"><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07，经媒体转述">白皮书·极光月狐 ↗</a></div></div>
+  </div>
+</section>
+
+<section class="section" id="s3">
+  <div class="section-eyebrow">03 · 产品能力拆解</div>
+  <div class="section-title">内容分发飞轮<br>是核心壁垒</div>
+  <h3 style="margin-top:24px">3.1 内容渠道定义</h3>
+  <div class="def-box">
+    <div class="def-label">名词定义 · 内容渠道 ≠ 纯自然流量</div>
+    <div class="def-text">抖音语境下"内容渠道"是相对于展示硬广（信息流买量、开屏广告）的统称，包含三类：①达人有机内容（接近自然流量）；②发行人计划内容（厂商付费达人推广，但形态是短视频/直播）；③厂商自运营官号内容。<strong>LTV+50%的参照基准是纯广告买量用户，而非"付费vs自然"的比较。</strong> <span class="src src-inf" title="基于公开信息的综合判断，非原文直接支撑">推断</span></div>
+  </div>
+  <div class="grid-2" style="margin:16px 0">
+    <div class="metric-tile"><div class="metric-label">内容渠道用户LTV提升</div><div class="metric-val blue">+50%</div><div class="metric-sub">vs 纯广告买量用户 <a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07">白皮书·极光月狐 ↗</a></div></div>
+    <div class="metric-tile"><div class="metric-label">内容场景流水增长</div><div class="metric-val blue">+160%</div><div class="metric-sub">同比 <a href="https://news.17173.com/content/12232025/024627519.shtml" target="_blank" class="src src-wp" title="17173·DataEye大会报道 2025.12.22">DataEye 2025.12 ↗</a></div></div>
+  </div>
+  <h3>案例归因修正：狙击外星人</h3>
+  <div class="fix-box">
+    <div class="fix-label">⚠ 归因修正</div>
+    <div class="fix-text">
+      <p><a href="https://news.17173.com/content/12232025/024627519.shtml" target="_blank" class="src src-wp" title="17173·DataEye大会报道 2025.12.22">17173·DataEye 2025.12 ↗</a> 《狙击外星人》通过社交裂变用户增长超12倍，分享带来的新增占总新增峰值达45%。</p>
+      <p>原文为厦门营火科技CEO发言："爆火主要是'你狙我躲'社交联机PK火了。"——<strong>"真人PK、群内挑战"是游戏厂商自己设计的玩法机制，不是抖音平台能力。</strong>此案例应理解为：具备天然传播基因的游戏设计，在内容生态平台上的势能释放。</p>
+    </div>
+  </div>
+  <h3>3.2 多场景分发入口</h3>
+  <div class="card">
+    <div class="card-body" style="padding:0">
+      <table class="data-table">
+        <thead><tr><th>入口</th><th>数据/状态</th></tr></thead>
+        <tbody>
+          <tr><td><strong>信息流直玩</strong></td><td>游戏核心玩法在信息流直接可互动 <span class="badge badge-amber">测试阶段</span></td></tr>
+          <tr><td><strong>侧边栏</strong></td><td>首页一级功能，习惯用户环比增长 <strong>88%</strong></td></tr>
+          <tr><td><strong>搜索</strong></td><td>搜索带量环比增长 <strong>53%</strong></td></tr>
+          <tr><td><strong>IM嵌入</strong></td><td>在抖音IM功能中渗透超过 <strong>20%</strong></td></tr>
+          <tr><td><strong>多端分发</strong></td><td>一键发布至字节系全域（头条、番茄、极速版等）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <h3>3.3 手转小与云游戏</h3>
+  <p><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07">白皮书·极光月狐 ↗</a> "手转小"正从防御性策略转为主动获客打法。《王者荣耀》推出小游戏拉新模块，《蛋仔派对》全量上云实现数据互通。<span class="badge badge-amber">注：云游戏技术趋势描述，非已全量上线确认</span></p>
+  <h3>3.4 留存短板</h3>
+  <p><a href="https://36kr.com/p/3606644578255875" target="_blank" class="src src-wp" title="36氪·DataEye抖音小游戏生态大会报道 2025.12.22">36氪·DataEye 2025.12 ↗</a> 核心弱点是<strong>留存</strong>。公域流量缺乏熟人社交绑定（不同于微信），流失率较高。平台正在强化侧边栏和历史记录入口权重，效果待观察。<span class="src src-inf" title="基于公开信息的综合判断，非原文直接支撑">推断</span></p>
+</section>
+
+<section class="section" id="s4">
+  <div class="section-eyebrow">04 · 商业结构</div>
+  <div class="section-title">广告才是大头<br>让利是战略性让步</div>
+  <p style="margin-top:20px"><span class="src src-wp">新浪财经 2025.07</span> 平台真正的商业模式是：游戏厂商在巨量引擎投放买量广告，这才是核心营收。分成让利是吸引供给侧的战略性让步。</p>
+  <h3>对厂商让利政策</h3>
+  <div class="grid-3">
+    <div class="metric-tile"><div class="metric-label">IAP（内购）分成</div><div class="metric-val red">最高90%</div><div class="metric-sub">"九一开"，传统渠道30-50%</div></div>
+    <div class="metric-tile"><div class="metric-label">IAA（广告）返还</div><div class="metric-val red">最高100%</div><div class="metric-sub">特定激励周期内</div></div>
+    <div class="metric-tile"><div class="metric-label">新游激励上限</div><div class="metric-val red">400万</div><div class="metric-sub">单款，2026年初政策</div></div>
+  </div>
+  <h3>内容创作者生态</h3>
+  <p><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07">白皮书·极光月狐 ↗</a> 2025年创作者总量同比增长360%，直播开播+430%，视频投稿作者+220%。"发行人计划"形成 游戏厂商→达人→用户 的分销体系，发行人流水增长220%。</p>
+</section>
+
+<section class="section" id="s5">
+  <div class="section-eyebrow">05 · 综合评估</div>
+  <div class="section-title">内容飞轮和供给吸引力<br>是核心壁垒，留存是短板</div>
+  <div class="eval-list" style="margin-top:24px">
+    <div class="eval-row"><span class="eval-dim">内容分发能力</span><div class="eval-stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></div><span class="eval-note">核心壁垒，短视频+直播+算法构成飞轮，难以复制</span></div>
+    <div class="eval-row"><span class="eval-dim">厂商供给吸引力</span><div class="eval-stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></div><span class="eval-note">让利政策激进，已成全行业供给侧第一选择</span></div>
+    <div class="eval-row"><span class="eval-dim">用户获取效率</span><div class="eval-stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star off">★</span></div><span class="eval-note">公域流量强，但获客成本上升（部分重度CPA超100元）</span></div>
+    <div class="eval-row"><span class="eval-dim">商业可持续性</span><div class="eval-stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star off">★</span></div><span class="eval-note">广告+内购双轮，字节系全域协同，结构稳健</span></div>
+    <div class="eval-row"><span class="eval-dim">中重度游戏承载</span><div class="eval-stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star off">★</span><span class="star off">★</span></div><span class="eval-note">正在扩张，但用户心智和生态成熟度低于手游App</span></div>
+    <div class="eval-row"><span class="eval-dim">用户留存能力</span><div class="eval-stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star off">★</span><span class="star off">★</span></div><span class="eval-note">明确短板，公域流量缺乏熟人社交绑定，流失率高于微信</span></div>
+  </div>
+  <div class="div"></div>
+  <div class="grid-2">
+    <div class="info-row" style="border-left:3px solid var(--green)"><span class="info-row-icon">▲</span><span><strong>核心优势：</strong>内容飞轮一旦形成，用户从"被动刷到"到"主动打开"路径极短，其他平台难以用单纯推荐算法复制。</span></div>
+    <div class="info-row" style="border-left:3px solid var(--amber)"><span class="info-row-icon">▽</span><span><strong>核心风险 <span class="src src-inf" title="基于公开信息的综合判断，非原文直接支撑">推断</span>：</strong>留存问题若无法解决，LTV天花板持续低于微信；重度品类扩张取决于云游戏体验，尚无大规模验证。</span></div>
+  </div>
+</section>
+
+<section class="section" id="s6">
+  <div class="section-eyebrow">06A · 对我们的判断 · 威胁视角</div>
+  <div class="section-title">威胁是消费起点的争夺<br>不是功能的竞争</div>
+  <h3 style="margin-top:24px">威胁路径对比</h3>
+  <div class="flow-row good" style="margin-bottom:10px">
+    <div class="flow-step"><div class="flow-step-label">传统路径（有利于我们）</div><div class="flow-step-val">用户产生游戏需求</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-val">打开游戏中心/应用商店</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-val">搜索/浏览</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-val">下载→游玩</div></div>
+  </div>
+  <div class="flow-row danger">
+    <div class="flow-step"><div class="flow-step-label">抖音路径（绕过我们）</div><div class="flow-step-val">用户刷抖音</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-val">刷到游戏内容</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-val">一键进入小游戏</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-step-val">游玩+付费</div><div class="flow-step-sub" style="color:var(--red)">全程不经过任何分发平台</div></div>
+  </div>
+  <h3>威胁升级信号</h3>
+  <div class="signal-list">
+    <div class="signal-item"><span class="signal-num">①</span><span class="signal-text"><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07">白皮书·极光月狐 ↗</a> 内购占比从2022年的38.8%升至2025年的<strong>68.1%</strong>——用户付费深度已对标手游，不再只是轻度娱乐</span></div>
+    <div class="signal-item"><span class="signal-num">②</span><span class="signal-text"><a href="https://zhuanlan.zhihu.com/p/2014287527712933356" target="_blank" class="src src-wp" title="知乎·白皮书深度解读 2026.03.09">白皮书·知乎解读 ↗</a> 王者荣耀、蛋仔派对等头部IP已布局小游戏版本，中重度品类正通过"玩法切片"方式进入抖音生态</span></div>
+  </div>
+  <h3>真实威胁机制</h3>
+  <p>我们的系统级入口是先于任何平台触达用户的唯一优势，但在以下场景失效：用户已打开抖音时；游戏需求被内容种草触发时（冲动型，不经过搜索）。</p>
+  <p><span class="src src-inf" title="基于公开信息的综合判断，非原文直接支撑">推断</span> 抖音正在培养"游戏消费在内容平台内完成"的用户习惯。一旦该习惯固化，用户主动访问独立游戏分发平台的动机将被削弱——<strong>威胁机制是行为习惯的迁移，而非简单的时长零和争夺</strong>（游戏时长和刷视频时长往往来自不同时间碎片）。</p>
+  <h3>建议动作</h3>
+  <div class="info-row" style="border-left:3px solid var(--blue)"><span class="info-row-icon">→</span><span><strong>产品侧：</strong>系统级场景（开机/解锁/充电）是抖音触达不到的位置，user_insight+个性化推荐应优先在这些场景落地。</span></div>
+  <div class="info-row" style="border-left:3px solid var(--blue)"><span class="info-row-icon">→</span><span><strong>BD侧：</strong>评估我们对游戏厂商的差异化价值（系统级曝光、预装位、用户画像数据）并量化，应对抖音90%让利形成的供给侧虹吸。</span></div>
+  <div class="info-row" style="border-left:3px solid var(--ink-4)"><span class="info-row-icon">✗</span><span style="color:var(--ink-3)"><strong>不建议做：</strong>在内容生态上与抖音正面竞争。我们没有短视频内容生态，试图复制内容飞轮是以己之短攻彼之长。</span></div>
+</section>
+
+<section class="section" id="s7">
+  <div class="section-eyebrow">06B · 对我们的判断 · 学习视角</div>
+  <div class="section-title">5个值得移植的机制</div>
+  <div style="margin-top:24px">
+    <div class="mech-card">
+      <div class="mech-head"><span class="mech-num">机制 01</span><span class="mech-title">内容→游戏的极短转化路径</span><span class="badge badge-blue">F/U/D · Decide节点</span></div>
+      <div class="mech-body">
+        <p>抖音把"看到内容"到"进入游戏"的摩擦降到接近零。我们的链路：推荐卡片→详情页→下载→安装→启动，每步都有流失。</p>
+        <p><strong>Decide节点的核心阻力是用户对未知游戏的不确定感</strong>——用户需要"感受过"才能做决策。我们的推荐卡片如果能内嵌30秒真实操作录屏或轻量试玩入口，可以在不依赖内容生态的情况下达到类似效果——用体验替代描述。</p>
+        <div class="mech-prereq"><div class="prereq-label">执行前提</div>需要游戏厂商提供标准化试玩包或真实录屏素材，我方推荐卡片需支持视频/互动内嵌能力。<span class="src src-inf" title="基于公开信息的综合判断，执行可行性需工程侧评估">推断·需评估</span></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-head"><span class="mech-num">机制 02</span><span class="mech-title">社交行为嵌入留存结构</span><span class="badge badge-blue">user_insight 应用</span></div>
+      <div class="mech-body">
+        <p><a href="https://finance.sina.com.cn/roll/2025-12-20/doc-inhcmwzc4576332.shtml" target="_blank" class="src src-off" title="2025抖音小游戏生态大会报道·新浪财经 2025.12.20">官方发言·新浪财经 ↗</a> 好友互动带来次日留存提升20%，社交行为和留存之间有可量化的因果关系。</p>
+        <p>user_insight是否能识别"社交型玩家"？对这类用户的推荐应优先联机/多人游戏。<strong>注意边界</strong>：借鉴的是"社交偏好可用于推荐分层"的思路，不是"让我们也做社交裂变"——后者需要内容生态，我们没有。</p>
+        <div class="mech-prereq"><div class="prereq-label">执行前提 · 依赖供给侧条件</div>我们平台联机/多人游戏SKU数量和质量是否足够支撑该推荐策略？若供给有限，天花板很低。<strong>建议先盘点联机游戏供给现状再评估优先级。</strong> <span class="src src-inf" title="基于公开信息的综合判断，非原文直接支撑">推断</span></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-head"><span class="mech-num">机制 03</span><span class="mech-title">版更节点的运营放大</span><span class="badge badge-blue">game_insight 应用</span></div>
+      <div class="mech-body">
+        <p><a href="https://zhuanlan.zhihu.com/p/2014287527712933356" target="_blank" class="src src-wp" title="知乎·白皮书深度解读 2026.03.09">白皮书·知乎解读 ↗</a> 版更营销周期内，激活率达平推期<strong>3倍</strong>，老用户回流比例达<strong>7倍</strong>。</p>
+        <p>我们是否能基于game_insight感知游戏版本更新，自动触发对该游戏历史用户（已沉默30天+）的召回推送？<strong>这是一个我们有数据基础但目前可能没有系统化执行的能力缺口。</strong></p>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-head"><span class="mech-num">机制 04</span><span class="mech-title">"复访三件套"的入口设计</span><span class="badge badge-gray">产品入口</span></div>
+      <div class="mech-body">
+        <p><a href="https://finance.sina.com.cn/roll/2025-12-20/doc-inhcmwzc4576332.shtml" target="_blank" class="src src-off" title="2025抖音小游戏生态大会报道·新浪财经 2025.12.20">官方发言·新浪财经 ↗</a> 侧边栏+推荐流直出+小游戏中心三个入口组合，帮助直玩DAU突破500万+。用户复访路径设计是独立于推荐算法之外的产品能力。</p>
+        <p>我们的游戏中心复访入口是否够强？用户下载了一款游戏之后，我们有没有在版更/活动等节点把他拉回来？</p>
+      </div>
+    </div>
+    <div class="mech-card" style="border-color:var(--blue-m)">
+      <div class="mech-head" style="border-color:var(--blue-m)"><span class="mech-num">机制 05</span><span class="mech-title">game_insight 新增"传播基因"维度</span><span class="badge badge-green">新增洞察</span></div>
+      <div class="mech-body">
+        <p>狙击外星人案例归因修正后的正确结论：<strong>游戏设计本身决定了它在内容生态里的增长天花板。</strong>"你狙我躲"产生可分享结果，是爆发的核心，不是平台能力。</p>
+        <p>game_insight在结构化理解游戏时，应增加"传播基因"评估维度：</p>
+        <div class="dna-grid">
+          <div class="dna-card"><div class="dna-q">可分享结果</div><div class="dna-hint">有没有天然产生可分享结果的机制？（胜负/排名/奇葩操作）</div></div>
+          <div class="dna-card"><div class="dna-q">社交对抗/合作</div><div class="dna-hint">好友可以互相参与，不只是自己玩自己的</div></div>
+          <div class="dna-card"><div class="dna-q">高光时刻</div><div class="dna-hint">值得截图/录屏的视觉冲击，自带传播欲</div></div>
+        </div>
+        <p style="margin-top:14px">两个用途：①推荐策略——对内容种草型用户优先推传播基因强的游戏；②BD评估——预测新游戏在内容平台的自然增量潜力，作为引进价值参考。<span class="src src-inf" title="基于公开信息的综合判断，非原文直接支撑">推断</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s8">
+  <div class="section-eyebrow">行动排序</div>
+  <div class="section-title">紧迫性 × 我方执行能力</div>
+  <div class="card" style="margin-top:24px">
+    <div class="card-body" style="padding:0">
+      <table class="action-table">
+        <thead><tr><th>建议动作</th><th>紧迫性</th><th>执行能力</th><th>优先级</th><th>备注</th></tr></thead>
+        <tbody>
+          <tr><td><strong>盘点平台联机游戏供给现状</strong></td><td><span class="badge badge-red">高</span></td><td>强·内部数据</td><td><span class="priority p0">P0</span></td><td>机制02能否执行的前提</td></tr>
+          <tr><td><strong>BD侧验证首发窗口是否实际收窄</strong></td><td><span class="badge badge-red">高</span></td><td>强·BD一手数据</td><td><span class="priority p0">P0</span></td><td>核心判断2的待验证假设</td></tr>
+          <tr><td><strong>盘点用户行为重叠度</strong>（我们 vs 抖音小游戏）</td><td><span class="badge badge-red">高</span></td><td>中·数据团队</td><td><span class="priority p1">P1</span></td><td>判断威胁是否已经在发生</td></tr>
+          <tr><td><strong>系统级入口激活</strong>（user_insight优先在开机/解锁场景落地）</td><td><span class="badge badge-red">高</span></td><td>中·跨团队协同</td><td><span class="priority p1">P1</span></td><td>我们的先手场景，抖音触达不到</td></tr>
+          <tr><td><strong>game_insight增加"传播基因"维度</strong></td><td><span class="badge badge-amber">中</span></td><td>中·schema扩展</td><td><span class="priority p1">P1</span></td><td>推荐策略+BD评估双用途</td></tr>
+          <tr><td><strong>game_insight感知版更 → 触发召回推送</strong></td><td><span class="badge badge-amber">中</span></td><td>中·数据基础已有</td><td><span class="priority p1">P1</span></td><td>执行路径清晰</td></tr>
+          <tr><td><strong>推荐卡片内嵌试玩/录屏</strong></td><td><span class="badge badge-amber">中</span></td><td>低·依赖厂商+工程</td><td><span class="priority p2">P2</span></td><td>方向正确，执行链路长</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <h3>本期信息盲区</h3>
+  <div class="blind-list">
+    <div class="blind-item key"><span class="blind-icon">⚠️</span><span><strong>关键盲区：</strong>我们平台手游用户中，有多少比例已同时是抖音小游戏的活跃用户？这决定了威胁是"潜在的"还是"已经在发生的"，优先级高于以下各项，需内部数据支撑。</span></div>
+    <div class="blind-item"><span class="blind-icon">○</span><span>抖音小游戏实际ARPU数据（未公开披露）</span></div>
+    <div class="blind-item"><span class="blind-icon">○</span><span>抖音小游戏与我们平台用户的总体重叠度（需内部数据）</span></div>
+    <div class="blind-item"><span class="blind-icon">○</span><span>信息流直玩功能的实际全量进度（目前仍为测试阶段）</span></div>
+  </div>
+  <h3>信息来源说明</h3>
+  <div class="source-legend">
+    <div class="legend-row"><a href="https://www.moonfox.cn/insight/report/1998" target="_blank" class="src src-wp" title="《2026抖音小游戏行业白皮书》抖音×极光月狐 2026.03.07，经媒体转述">白皮书·极光月狐 ↗</a>白皮书数据经媒体转述，非官方原文</div>
+    <div class="legend-row"><a href="https://finance.sina.com.cn/roll/2025-12-20/doc-inhcmwzc4576332.shtml" target="_blank" class="src src-off" title="2025抖音小游戏生态大会报道·新浪财经 2025.12.20">官方发言·新浪财经 ↗</a>平台负责人大会发言</div>
+    <div class="legend-row"><a href="https://www.questmobile.com.cn/research/report/1980474117065904130/" target="_blank" class="src src-qm" title="QuestMobile 2025手机游戏行业发展分析报告 2025.10.21">QuestMobile ↗</a>第三方数据机构</div>
+    <div class="legend-row"><span class="src src-inf" title="基于公开信息的综合判断，非原文直接支撑">推断</span>基于公开信息的综合判断，非原文支撑</div>
+    <div class="legend-row"><span class="src src-hyp">待验证假设</span>逻辑合理但缺乏直接论据</div>
+    <div class="legend-row"><span class="src src-fix">归因修正</span>对常见误读的主动修正</div>
+  </div>
+  <div class="div"></div>
+  <div style="font-size:12px;color:var(--ink-4);display:flex;justify-content:space-between">
+    <span>信息截止：2026年5月15日 · 下期专题建议：小红书游戏生态</span>
+    <span>W20 · 手机厂商游戏分发业务</span>
+  </div>
+</section>
+</main>
+
+<script>
+const navLinks=document.querySelectorAll('.nav-item');
+const sections=document.querySelectorAll('.section');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navLinks.forEach(a=>a.classList.remove('active'));const link=document.querySelector(`.nav-item[href="#${e.target.id}"]`);if(link)link.classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

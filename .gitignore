@@ -4,6 +4,9 @@
 *.jpg
 *.png
 
+# but keep the bundled baseline sample report (visual reference for the skill)
+!references/sample_*.html
+
 # temp
 *.tmp
 Thumbs.db
